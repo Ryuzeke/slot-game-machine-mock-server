@@ -1,0 +1,110 @@
+Connect at: "ws://localhost:3000"
+
+
+----- HANDSHAKE START -----
+REQUEST:
+{ 
+    "request": "handshake",
+    "body": {}
+} 
+
+ANSWER:
+{
+    "request":"handshake",
+    "body":{
+        "token":"test_token",
+        "success":true,
+        "config":{
+          "name":"ryuzeke-slot",
+          "reels":[
+             [1,1,1,1,1,5,1,2,3],
+             [1,1,1,1,1,5,1,2,3],
+             [1,1,1,1,1,5,1,2,3]
+          ],
+          "columns":3,
+          "paylines":[
+             [0,0,0],
+             [1,1,1],
+             [2,2,2]
+          ],
+          "win_rules":{
+             "29c8dc93a82e5c41b4a6eef4f9da512ee2dc3a47":{
+                "type":"payline",
+                "symbols":[1,1,1],
+                "wins":{
+                   "payline_bet_multiplier":5
+                }
+             }
+          }
+       },
+       "user_information":{
+          "id":1101,
+          "balance":9998,
+          "await_to_collect":5
+       }
+    }
+}
+----- HANDSHAKE STOP -----
+
+
+
+----- PLAYGAME START -----
+REQUEST:
+{ 
+    "request": "playgame",
+    "body": {
+        "token": "user_token_here",
+        "lines_count": 2,
+        "bet_per_line": 1
+    }
+} 
+
+ANSWER:
+{
+    "request":"playgame",
+    "body":{
+       "sucess":true,
+       "user_information":{
+          "id":1101,
+          "balance":9998,
+          "await_to_collect":5
+       },
+       "reels_stop_position":[5,5,0],
+       "wins":{
+          "paylines":{
+             "1":{
+                "type":"payline",
+                "symbols":[1,1,1],
+                "wins":{
+                   "payline_bet_multiplier":5
+                }
+             }
+          },
+          "total":{
+             "amount_won":5
+          }
+       }
+    }
+}
+----- PLAYGAME STOP -----
+
+
+
+----- COLLECT START -----
+REQUEST:
+{
+    "request":"collect",
+    "body":{
+       "token":"user_token_here"
+    }
+}
+
+ANSWER:
+{
+    "request":"collect",
+    "body":{
+       "current_balance":10000,
+       "success":true
+    }
+ }
+----- COLLECT STOP -----
